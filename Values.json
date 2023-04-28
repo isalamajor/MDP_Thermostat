@@ -1,0 +1,9 @@
+{"State":{    "on":{"state+0,5":"0,5","state+1":"0,2","stay":"0,2","state-0,5":"0,1"},
+              "off":{"state+0,5":"0,1","state+1":"0","stay":"0,2","state-0,5":"0,7"}},
+ "State16":{  "on":{"state+0,5":"0,5","state+1":"0,2","stay":"0,3","state-0,5":"0"},
+              "off":{"state+0,5":"0,1","state+1":"0","stay":"0,9","state-0,5":"0"}},
+ "State25":{  "on":{"state+0,5":"0","state+1":"0","stay":"0,9","state-0,5":"0,1"},
+              "off":{"state+0,5":"0","state+1":"0","stay":"0,3","state-0,5":"0,7"}},
+ "State24,5":{"on":{"state+0,5":"0,7","state+1":"0","stay":"0,2","state-0,5":"0,1"},
+              "off":{"state+0,5":"0,1","state+1":"0","stay":"0,2","state-0,5":"0,7"}}
+}
