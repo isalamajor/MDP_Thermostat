@@ -20,19 +20,18 @@ def main():
 
     print(previous_values)
     count = 15.5
-    state_type = "State"
 
     while count < 25:
 
         count += 0.5
 
-        state_type == "State"
+        state_type = "State"
         if count == 16:
-            state_type == "State16"
+            state_type = "State16"
         elif count == 24.5:
-            state_type == "State24,5"
+            state_type = "State24,5"
         elif count == 25:
-            state_type == "State25"
+            state_type = "State25"
 
         summation_on = cost_on
         action = "on"
@@ -55,7 +54,7 @@ def main():
     key_format = "\033[1;35m"
     value_format = "\033[1;36m"
     separator_format = "\033[1;37m"
-    for key in previous_values.keys():
+    for key in previous_values:
         print(key_format, key, separator_format, "->", value_format, previous_values[key])
 
     return None
