@@ -34,11 +34,19 @@ def main():
     count = 15.5
     iteration=0
     while count > 0:
-        if ((new_values[24] - previous_values[24]) > 0.0001) or iteration<1:
-            print(key_format, 24, separator_format, "->", value_format, previous_values[24])
+        # la resta hay que ver que hacemos mal pero siempre es uno mas que la vez anterior
+        if ((new_values[24] - previous_values[24]) > 0.01) or iteration<1:
+            print(new_values[24])
+            print(previous_values[24])
+
+
+            print(new_values[24] - previous_values[24])
+            print("------------------------------------------------------")
+
+            """print(key_format, 24, separator_format, "->", value_format, previous_values[24])
             print("-----------------------------------------")
             print(key_format, 24, separator_format, "->", value_format, new_values[24])
-            print("00000000000000000000000000000000000000000")
+            print("00000000000000000000000000000000000000000")"""
 
             iteration += 1
             count = 15
