@@ -1,0 +1,16 @@
+{"states":{ "D":{    "AV":{"D":0.5,"I":0.3,"E":0.2},
+                        "INF":{"D":0.2,"I":0.7,"E":0.1},
+                        "initial_value": 0},
+            "I":{  "AV":{"D":0,"I":0.8,"E":0.2},
+                        "INF":{"D":0,"I":0.3,"E":0.7},
+                        "initial_value": 0},
+            "E":{  "AV":{"D":0,"I":0,"E":0},
+                        "INF":{"D":0,"I":0,"E":0},
+                        "initial_value": 0}},
+"costs":{"AV":10,"INF":25},
+  "actions": ["AV","INF"],
+  "states names": ["D","I","E"],
+  "goal state": "E",
+  "difference ratio": 0.001
+}
+
