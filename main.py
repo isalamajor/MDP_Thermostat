@@ -35,7 +35,7 @@ def main(temperature):
     #print(previous_values)
     count = 15.5
     iteration=0
-    while iteration<1 or (new_values[24] - previous_values[24]) > 0.001:
+    while iteration<1 or (new_values[value_to_check] - previous_values[value_to_check]) > 0.001:
         
 
             iteration += 1
@@ -76,6 +76,25 @@ def main(temperature):
                         count + float(state_to_go)]))
                     
                 new_values[count] = min(summation_on, summation_off)
+            
+
+            biggest_difference=0
+
+            for keys in new_values:
+                 if float(keys) > 15.5 and float(keys) < 25.5:  
+                    bridge = new_values[keys] - previous_values[keys]
+                    if biggest_difference <= bridge:
+                        biggest_difference = bridge
+                        value_to_check=keys
+
+
+                
+                
+            
+
+
+
+
 
     count = 15.5
     while count < 25:
@@ -83,8 +102,10 @@ def main(temperature):
                 state_type = "State"
                 if count==temperature:
                     if count==25:
+                        print(key_format, count, separator_format, "->", "Final State")
                         break
                     else:
+                        print(key_format, count, separator_format, "->", "Final State")
                         count+=0.5
 
                 if count == 16:
@@ -98,7 +119,7 @@ def main(temperature):
                 action = "on"
                 for state_to_go in states_enumeration[state_type][action]:
                     # 1+float(state_to_go)  important change to float if you want to add to the count
-                    summation_on += (float(states_enumeration[state_type][action][state_to_go]) * float(previous_values[
+                    summation_on += (float(states_enumeration[state_type][action][state_to_go]) * float(new_values[
                         count + float(state_to_go)]))
                 
                 
@@ -107,10 +128,13 @@ def main(temperature):
                 action = "off"
                 for state_to_go in states_enumeration[state_type][action]:
                     # 1+float(state_to_go)  important change to float if you want to add to the count
-                    summation_off += (float(states_enumeration[state_type][action][state_to_go]) * float(previous_values[
+                    summation_off += (float(states_enumeration[state_type][action][state_to_go]) * float(new_values[
                         count + float(state_to_go)]))
                     
-                new_values[count] = min(summation_on, summation_off)
+                if summation_off<summation_on:
+                    print(key_format, count, separator_format, "->", "Off")
+                else:
+                     print(key_format, count, separator_format, "->", "On")
     print(iteration)        
         
         
@@ -129,4 +153,4 @@ def main(temperature):
     return None"""
 
 if __name__ == "__main__":
-    main(24)
+    main(20)
