@@ -2,7 +2,7 @@ import json
 import copy
 
 
-def main():
+def main(temperature):
     fp = open('Values.json', 'r')
     data = json.load(fp)
     fp.close()
@@ -35,26 +35,22 @@ def main():
     #print(previous_values)
     count = 15.5
     iteration=0
-    while count > 0:
-        # la resta hay que ver que hacemos mal pero siempre es el valor del menor coste mas que la vez anterior
-        if iteration<1 or (new_values[24] - previous_values[24]) > 0.001: 
+    while iteration<1 or (new_values[24] - previous_values[24]) > 0.001:
         
 
             iteration += 1
-            """count = 15
-            while count < 26:
-                count = count + 0.5
-                previous_values[count] = float(new_values[count])"""
             previous_values = copy.deepcopy(new_values)
-            #for key in previous_values:
 
             
             count = 15.5
             while count < 25:
                 count += 0.5
                 state_type = "State"
-                if count==22:
-                    count+=0.5
+                if count==temperature:
+                    if count==25:
+                        break
+                    else:
+                        count+=0.5
 
                 if count == 16:
                     state_type = "State16"
@@ -67,11 +63,6 @@ def main():
                 action = "on"
                 for state_to_go in states_enumeration[state_type][action]:
                     # 1+float(state_to_go)  important change to float if you want to add to the count
-                    """probability=float(states_enumeration[state_type][action][state_to_go])
-                    path_taken=count + float(state_to_go)
-                    value = previous_values[path_taken]
-                    thing_to_add = probability*value
-                    summation_on = summation_on + thing_to_add"""
                     summation_on += (float(states_enumeration[state_type][action][state_to_go]) * float(previous_values[
                         count + float(state_to_go)]))
                 
@@ -81,38 +72,52 @@ def main():
                 action = "off"
                 for state_to_go in states_enumeration[state_type][action]:
                     # 1+float(state_to_go)  important change to float if you want to add to the count
-                    """probability=float(states_enumeration[state_type][action][state_to_go])
-                    path_taken=count + float(state_to_go)
-                    value = previous_values[path_taken]
-                    thing_to_add = probability*value
-                    summation_off = summation_off + thing_to_add"""
                     summation_off += (float(states_enumeration[state_type][action][state_to_go]) * float(previous_values[
                         count + float(state_to_go)]))
                     
                 new_values[count] = min(summation_on, summation_off)
+
+    count = 15.5
+    while count < 25:
+                count += 0.5
+                state_type = "State"
+                if count==temperature:
+                    if count==25:
+                        break
+                    else:
+                        count+=0.5
+
+                if count == 16:
+                    state_type = "State16"
+                elif count == 24.5:
+                    state_type = "State24,5"
+                elif count == 25:
+                    state_type = "State25"
+
+                summation_on = cost_on
+                action = "on"
+                for state_to_go in states_enumeration[state_type][action]:
+                    # 1+float(state_to_go)  important change to float if you want to add to the count
+                    summation_on += (float(states_enumeration[state_type][action][state_to_go]) * float(previous_values[
+                        count + float(state_to_go)]))
+                
+                
+                
+                summation_off = cost_off
+                action = "off"
+                for state_to_go in states_enumeration[state_type][action]:
+                    # 1+float(state_to_go)  important change to float if you want to add to the count
+                    summation_off += (float(states_enumeration[state_type][action][state_to_go]) * float(previous_values[
+                        count + float(state_to_go)]))
                     
-                """print("-------------------------------------------")
-                print(iteration)
-                print(count)
-                print(summation_on)
-                print(summation_off)
-                print(previous_values[count])
-                print(new_values[count])"""
-                """if iteration ==3:
-                    print(new_values)
-                    print(previous_values)
-                    break"""
-        else:
-            """print(key_format, 20, separator_format, "->", value_format, previous_values[20])
-            print(key_format, 20, separator_format, "->", value_format, new_values[20])"""
-            break
-        
+                new_values[count] = min(summation_on, summation_off)
+    print(iteration)        
         
         
         
 
 
-    print(new_values)
+
     """print(key_format, 16, separator_format, "->", value_format, new_values[16])
     print(key_format, 16.5, separator_format, "->", value_format, new_values[16.5])
     print(cost_on)
@@ -124,4 +129,4 @@ def main():
     return None"""
 
 if __name__ == "__main__":
-    main()
+    main(24)
