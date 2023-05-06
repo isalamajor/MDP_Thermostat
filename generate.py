@@ -10,9 +10,7 @@ def thermostate_mdp(goal, ratio):
 
     states = {}
 
-    final = { "on": {16.5 :0.0, 17.0 :0.0, 16.0 :0.0},
-                "off":{16.5 :0.0, 17.0 :0.0  , 16.0 :0.0},
-                "initial_value":0}
+    
 
     State16 = { "on": {16.5 :0.5, 17.0 :0.2, 16.0 :0.3},
                 "off":{16.5 :0.1, 17.0 :0  , 16.0 :0.9},
@@ -33,7 +31,9 @@ def thermostate_mdp(goal, ratio):
         count += 0.5
         states_names.append(str(count))
         if count==goal:
-            states[count] = final
+            states[count] = { "on": {count + 0.5 :0.0, count + 1 :0.0, count:0.0, count - 0.5 : 0.0},
+                             "off": {count + 0.5 :0.0, count + 1 :0.0, count:0.0, count - 0.5 : 0.0},
+                             "initial_value":0}
         elif count == 16:
             states[count] = State16
         elif count == 24.5:
@@ -49,8 +49,8 @@ def thermostate_mdp(goal, ratio):
         count += 0.5
         for key in states_names:
             if not (float(key) == count or float(key) == count-0.5 or float(key) == count+0.5 or float(key) == count + 1): 
-                states[count]["on"][key] = 0
-                states[count]["off"][key] = 0
+                states[count]["on"][key] = 0.0
+                states[count]["off"][key] = 0.0
 
     with open('Values.json', 'w') as f:
         json.dump({
