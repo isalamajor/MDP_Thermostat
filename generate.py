@@ -10,6 +10,9 @@ def thermostate_mdp(goal, ratio):
 
     states = {}
 
+    final = { "on": {16.5 :0.0, 17.0 :0.0, 16.0 :0.0},
+                "off":{16.5 :0.0, 17.0 :0.0  , 16.0 :0.0},
+                "initial_value":0}
 
     State16 = { "on": {16.5 :0.5, 17.0 :0.2, 16.0 :0.3},
                 "off":{16.5 :0.1, 17.0 :0  , 16.0 :0.9},
@@ -29,7 +32,9 @@ def thermostate_mdp(goal, ratio):
     while count < 25:
         count += 0.5
         states_names.append(str(count))
-        if count == 16:
+        if count==goal:
+            states[count] = final
+        elif count == 16:
             states[count] = State16
         elif count == 24.5:
             states[count] = State245
