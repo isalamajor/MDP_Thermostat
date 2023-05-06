@@ -43,8 +43,8 @@ def thermostate_mdp(goal, ratio):
             "states": states,
             "costs": costs,
             "actions": actions,
-            "states_names": states_names,
-            "goal_state": goal,
+            "states names": states_names,
+            "goal state": goal,
             "difference ratio" : ratio
-        }, f, indent=4)
+        }, f, indent=4, ensure_ascii=False)
 thermostate_mdp(22, 0.001)

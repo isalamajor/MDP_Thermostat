@@ -275,7 +275,7 @@
         "on",
         "off"
     ],
-    "states_names": [
+    "states names": [
         16.0,
         16.5,
         17.0,
@@ -295,6 +295,6 @@
         24.0,
         24.5
     ],
-    "goal_state": 22,
+    "goal state": 22,
     "difference ratio": 0.001
 }

@@ -1,4 +1,5 @@
 import json
+from generate import thermostate_mdp
 
 
 def main(json_file):
@@ -71,4 +72,5 @@ def main(json_file):
 
 
 if __name__ == "__main__":
-    main('excel.json')
+    thermostate_mdp(22, 0.001)
+    main('Values.json')
