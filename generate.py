@@ -27,7 +27,7 @@ def thermostate_mdp(goal, ratio):
     count = 15.5
     while count < 24.5:
         count += 0.5
-        states_names.append(count)
+        states_names.append(str("\"" + str(count) + "\""))
         if count == 16:
             states[count] = State16
         elif count == 24.5:
