@@ -857,7 +857,7 @@
         }
     },
     "costs": {
-        "on": 0.5,
+        "on": 2,
         "off": 0.5
     },
     "actions": [
@@ -885,6 +885,6 @@
         "24.5",
         "25.0"
     ],
-    "goal state": 22,
+    "goal state": "22.0",
     "difference ratio": 0.001
 }

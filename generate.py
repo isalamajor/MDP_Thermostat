@@ -4,7 +4,7 @@ def thermostate_mdp(goal, ratio):
 
 
 
-    costs = {"on":0.5,"off":0.5}
+    costs = {"on": 2,"off": 0.5}
     actions = ["on","off"]
     states_names=[]
 
@@ -30,7 +30,7 @@ def thermostate_mdp(goal, ratio):
     while count < 25:
         count += 0.5
         states_names.append(str(count))
-        if count==goal:
+        if count==float(goal):
             states[count] = { "on": {count + 0.5 :0.0, count + 1 :0.0, count:0.0, count - 0.5 : 0.0},
                              "off": {count + 0.5 :0.0, count + 1 :0.0, count:0.0, count - 0.5 : 0.0},
                              "initial_value":0}
@@ -61,4 +61,3 @@ def thermostate_mdp(goal, ratio):
             "goal state": goal,
             "difference ratio" : ratio
         }, f, indent=4, ensure_ascii=False)
-thermostate_mdp(22, 0.001)
